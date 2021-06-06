@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text styles -->
+    <style name="CurrencySymbol" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CurrencyName" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/lightGrey</item>
+    </style>
+
+    <style name="CurrencyValue" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/mediumTextSize</item>
+    </style>
+</resources>

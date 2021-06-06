@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="flag_iv_size">@dimen/_40sdp</dimen>
+
+    <dimen name="marginXSmall">@dimen/_4sdp</dimen>
+    <dimen name="marginSmall">@dimen/_8sdp</dimen>
+    <dimen name="marginMedium">@dimen/_16sdp</dimen>
+
+    <dimen name="mediumTextSize">@dimen/_16ssp</dimen>
+</resources>
