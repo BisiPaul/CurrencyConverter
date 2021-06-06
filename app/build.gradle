@@ -44,11 +44,6 @@ android {
 }
 
 ext {
-    roomVersion = "2.2.6"
-    coroutinesVersion = "1.4.2"
-    appcompatVersion = "1.2.0"
-    navVersion = "2.3.3"
-    lifecycleVersion = "2.2.0"
     hiltVersion = "2.33-beta"
 }
 

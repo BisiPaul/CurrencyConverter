@@ -19,12 +19,14 @@ import com.bumptech.glide.request.transition.Transition
  */
 class RateViewHolder(
     private val binding: ViewDataBinding,
-    private val onCurrencySelected: (currency: String, amount: String, position: Int) -> Unit
+    private val onCurrencySelected: (currency: String, amount: String, position: Int) -> Unit,
+    private val onTextChanged: () -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val textWatcher = object : SimpleTextWatcher() {
         override fun onTextChanged(text: String) {
             SharedPreferencesUtils.baseAmount = text
+            onTextChanged()
         }
     }
 

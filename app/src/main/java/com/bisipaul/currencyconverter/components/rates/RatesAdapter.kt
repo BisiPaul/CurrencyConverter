@@ -26,11 +26,15 @@ class RatesAdapter(
         shouldRedrawFirstElement = true
     }
 
+    private var onTextChanged: () -> Unit = {
+        notifyItemRangeChanged(1, rates.size-1, Constants.PAYLOAD_AMOUNT)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         RateViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context), R.layout.item_rate, parent, false
-            ), onCurrencySelected
+            ), onCurrencySelected, onTextChanged
         )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -50,7 +54,6 @@ class RatesAdapter(
             notifyDataSetChanged()
             shouldRedrawFirstElement = false
         } else {
-            //notifyItemRangeChanged(1, rates.size-1)
             notifyItemRangeChanged(1, rates.size-1, Constants.PAYLOAD_AMOUNT)
         }
     }
