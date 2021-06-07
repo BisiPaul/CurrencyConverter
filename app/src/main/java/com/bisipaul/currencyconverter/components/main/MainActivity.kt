@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bisipaul.currencyconverter.R
 import com.bisipaul.currencyconverter.utils.NetworkChangeReceiver
-import com.bisipaul.currencyconverter.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

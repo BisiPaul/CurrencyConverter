@@ -13,6 +13,8 @@ import javax.inject.Inject
 /**
  *  Created by paulbisioc on 07.06.2021
  */
+// I am using this to detect network changes for so long, that I know it is deprecated, but it just does it's job
+// Would kindly accept a new way of doing this :D
 class NetworkChangeReceiver @Inject constructor() : BroadcastReceiver() {
 
     companion object {

@@ -1,9 +1,7 @@
 package com.bisipaul.currencyconverter.structure
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bisipaul.currencyconverter.utils.SingleLiveEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlin.coroutines.CoroutineContext
 

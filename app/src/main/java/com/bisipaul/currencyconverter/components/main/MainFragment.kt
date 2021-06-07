@@ -1,22 +1,18 @@
 package com.bisipaul.currencyconverter.components.main
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bisipaul.currencyconverter.R
 import com.bisipaul.currencyconverter.components.error.ErrorActivity
-import com.bisipaul.currencyconverter.components.noInternet.NoInternetActivity
 import com.bisipaul.currencyconverter.components.rates.RatesAdapter
 import com.bisipaul.currencyconverter.components.rates.RatesAdapterCallback
 import com.bisipaul.currencyconverter.databinding.MainFragmentBinding
