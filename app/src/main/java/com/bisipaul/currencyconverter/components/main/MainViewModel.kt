@@ -29,10 +29,16 @@ class MainViewModel @Inject constructor(
     private var _navigateToError = SingleLiveEvent<Unit>()
     val navigateToError: SingleLiveEvent<Unit> get() = _navigateToError
 
+    private var _loadingForFirstTime = SingleLiveEvent<Boolean>()
+    val loadingForFirstTime: SingleLiveEvent<Boolean> get() = _loadingForFirstTime
+
     private var fetchRatesJob: Job? = null
 
     private fun getRatesInternal() {
         viewModelScope.launch {
+            val isFirstTimeLoading = rates.value.isNullOrEmpty()
+            if(isFirstTimeLoading)
+                _loadingForFirstTime.value = true
             when (val response = ratesRepository.getRates(
                 SharedPreferencesUtils.baseCurrency ?: Constants.DEFAULT_BASE_CURRENCY
             )) {
@@ -40,9 +46,12 @@ class MainViewModel @Inject constructor(
                     response.data?.let {
                         _rates.value = it.rates.toList()
                     }
+                    _loadingForFirstTime.value = false
                 }
                 is ErrorResponse -> {
                     stopFetchingRates()
+                    _rates.value = listOf()
+                    _loadingForFirstTime.value = false
                     _navigateToError.value = Unit
                 }
             }

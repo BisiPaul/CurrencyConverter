@@ -17,7 +17,9 @@ import com.bisipaul.currencyconverter.components.rates.RatesAdapter
 import com.bisipaul.currencyconverter.components.rates.RatesAdapterCallback
 import com.bisipaul.currencyconverter.databinding.MainFragmentBinding
 import com.bisipaul.currencyconverter.structure.BaseFragment
+import com.bisipaul.currencyconverter.utils.gone
 import com.bisipaul.currencyconverter.utils.hideKeyboard
+import com.bisipaul.currencyconverter.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -80,6 +82,13 @@ class MainFragment : BaseFragment(), RatesAdapterCallback {
             )
             intentToError.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             requireContext().startActivity(intentToError)
+        }
+
+        loadingForFirstTime.observe {
+            if(it)
+                binding.loadingProgressBar.visible()
+            else
+                binding.loadingProgressBar.gone()
         }
     }
 
