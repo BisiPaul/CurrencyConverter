@@ -12,8 +12,6 @@ import kotlin.coroutines.CoroutineContext
  */
 
 abstract class BaseViewModel : ViewModel(), CoroutineScope {
-    private val _showOfflinePage = SingleLiveEvent<Unit>()
-    val showOfflinePage: LiveData<Unit> = _showOfflinePage
 
     override val coroutineContext: CoroutineContext
         get() = viewModelScope.coroutineContext

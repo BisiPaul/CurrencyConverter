@@ -10,9 +10,6 @@ import androidx.lifecycle.Observer
 abstract class BaseFragment : Fragment() {
 
     fun observe(baseViewModel: BaseViewModel) = with(baseViewModel) {
-        showOfflinePage.observe {
-            //openOfflineActivity()
-        }
     }
 
     fun <T> LiveData<T>.observe(observer: Observer<T>) {

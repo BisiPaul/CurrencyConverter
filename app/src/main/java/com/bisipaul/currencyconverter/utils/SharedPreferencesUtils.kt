@@ -33,4 +33,9 @@ object SharedPreferencesUtils {
     var baseAmount: String?
         get() = preferences.getString(BASE_AMOUNT, Constants.DEFAULT_BASE_AMOUNT)
         set(value) = edit { it.putString(BASE_AMOUNT, value) }
+
+    fun reinitialize() {
+        baseCurrency = Constants.DEFAULT_BASE_CURRENCY
+        baseAmount = Constants.DEFAULT_BASE_AMOUNT
+    }
 }

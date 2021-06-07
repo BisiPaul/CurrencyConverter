@@ -24,6 +24,10 @@
         <activity
             android:name=".components.noInternet.NoInternetActivity"
             android:launchMode="singleTask" />
+
+        <activity
+            android:name=".components.error.ErrorActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

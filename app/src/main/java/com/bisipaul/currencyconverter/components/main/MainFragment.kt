@@ -2,6 +2,7 @@ package com.bisipaul.currencyconverter.components.main
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bisipaul.currencyconverter.R
+import com.bisipaul.currencyconverter.components.error.ErrorActivity
+import com.bisipaul.currencyconverter.components.noInternet.NoInternetActivity
 import com.bisipaul.currencyconverter.components.rates.RatesAdapter
 import com.bisipaul.currencyconverter.components.rates.RatesAdapterCallback
 import com.bisipaul.currencyconverter.databinding.MainFragmentBinding
@@ -47,11 +50,15 @@ class MainFragment : BaseFragment(), RatesAdapterCallback {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getRates()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configView()
         observe()
-        viewModel.getRates()
     }
 
     private fun configView() {
@@ -67,6 +74,16 @@ class MainFragment : BaseFragment(), RatesAdapterCallback {
         super.observe(viewModel)
         rates.observe {
             ratesAdapter.submitNewList(it)
+        }
+
+        navigateToError.observe {
+            val intentToError = Intent()
+            intentToError.setClassName(
+                requireContext().packageName,
+                ErrorActivity::class.java.name
+            )
+            intentToError.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            requireContext().startActivity(intentToError)
         }
     }
 

@@ -1,24 +1,21 @@
 package com.bisipaul.currencyconverter.components.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.bisipaul.currencyconverter.core.ErrorResponse
 import com.bisipaul.currencyconverter.core.SuccessResponse
 import com.bisipaul.currencyconverter.data.api.models.rates.Rate
-import com.bisipaul.currencyconverter.data.api.models.rates.Rates
 import com.bisipaul.currencyconverter.data.api.repositories.rates.RatesRepository
 import com.bisipaul.currencyconverter.structure.BaseViewModel
 import com.bisipaul.currencyconverter.utils.Constants
-import com.bisipaul.currencyconverter.utils.CurrencyUtils
 import com.bisipaul.currencyconverter.utils.SharedPreferencesUtils
+import com.bisipaul.currencyconverter.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,9 +23,11 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val ratesRepository: RatesRepository
 ) : BaseViewModel() {
-    // TODO: Implement the ViewModel
     private var _rates = MutableLiveData<List<Rate>>()
     val rates: LiveData<List<Rate>> get() = _rates
+
+    private var _navigateToError = SingleLiveEvent<Unit>()
+    val navigateToError: SingleLiveEvent<Unit> get() = _navigateToError
 
     private var fetchRatesJob: Job? = null
 
@@ -43,7 +42,8 @@ class MainViewModel @Inject constructor(
                     }
                 }
                 is ErrorResponse -> {
-                    // TODO handle error
+                    stopFetchingRates()
+                    _navigateToError.value = Unit
                 }
             }
         }
