@@ -1,6 +1,7 @@
 package com.bisipaul.currencyconverter.components.rates
 
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -75,5 +76,14 @@ class RateViewHolder(
 
         // Restrict the decimal places shown to 2
         return String.format("%.2f", finalAmount)
+    }
+
+    fun update(bundle: Bundle) = with(binding) {
+        if (binding !is ItemRateBinding) return
+
+        if (bundle.containsKey(Constants.PAYLOAD_AMOUNT)) {
+            val newValue = bundle.getDouble(Constants.PAYLOAD_AMOUNT)
+            binding.currencyRateET.setText(newValue.toString())
+        }
     }
 }

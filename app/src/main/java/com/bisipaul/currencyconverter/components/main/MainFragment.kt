@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bisipaul.currencyconverter.R
 import com.bisipaul.currencyconverter.components.error.ErrorActivity
@@ -61,9 +60,9 @@ class MainFragment : BaseFragment(), RatesAdapterCallback {
 
     private fun configView() {
         binding.ratesRV.apply {
+            setHasFixedSize(true)
             adapter = ratesAdapter
             layoutManager = LinearLayoutManager(requireContext())
-            itemAnimator = DefaultItemAnimator()
             setOnTouchListener(touchListener)
         }
     }
@@ -95,7 +94,6 @@ class MainFragment : BaseFragment(), RatesAdapterCallback {
     override fun onCurrencySelected(newCurrency: String, newAmount: String) {
         viewModel.stopFetchingRates()
         viewModel.setNewBaseValues(newCurrency, newAmount)
-        binding.ratesRV.scrollToPosition(0)
         viewModel.getRates()
     }
 
